@@ -1,5 +1,10 @@
-This is an h1
-=============
+데이터 타입에 대해서
+===============
 
-This is an h2
--------------
+1.기본 타입
+*number
+1234
+*string
+*boolean
+*undefined
+*null
