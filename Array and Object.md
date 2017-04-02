@@ -2,9 +2,9 @@
 ===============
 
 1.기본 타입
-*number
-1234
-*string
-*boolean
-*undefined
-*null
+* number
+  1234
+* string
+* boolean
+* undefined
+* null
