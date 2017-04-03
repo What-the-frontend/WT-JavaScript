@@ -1,3 +1,4 @@
+//Algorithm study
 function pyramid_1(){
   for(var i = 0; i < 5; i++){
     var star = "";
@@ -5,6 +6,31 @@ function pyramid_1(){
       star += '*';
     }
     console.log(star + '\n');
+  }
+}
+// *
+// **
+// ***
+// ****
+// *****
+
+function pyramid_2(){
+  for(var i=0; i<5; i++){
+  }
+}
+//     *
+//    ***
+//   *****
+//  *******
+// *********
+
+function fibonachi(){
+  var a=0, b=1;
+  for(var i=0; i<5; i++){
+    a += b;
+    console.log(b);
+    b += a;
+    console.log(a);
   }
 }
 
@@ -79,9 +105,14 @@ function Function(){  //함수 또한 객체이다. 일급 객체로 취급이�
     return i+j;
   }
   console.log(Ex_sum(2, 1));
-  
+
   var mul = function sample(i, j){  //함수 표현식에서 익명함수 대신 기명함수를 사용할 수 있다. 값의 차이는 없지만 내부적으로 함수를 사용하는 경우에 쓴다. (예: 재귀함수)
     return i*j;
   }
   console.log(mul(2, 4));
+
+  function parameter(func){ //함수는 일급 객체이기 때문에 매개 변수로 받는 것도 가능하다.
+    console.log(func(1, 3));  //4
+  }
+  parameter(Ex_sum);  //Ex_sum함수를 매개변수로 parameter함수에 넣어준다.
 }
