@@ -116,3 +116,20 @@ function Function(){  //함수 또한 객체이다. 일급 객체로 취급이�
   }
   parameter(Ex_sum);  //Ex_sum함수를 매개변수로 parameter함수에 넣어준다.
 }
+
+//디자인 패턴
+//강제로 인스턴스 생성하기
+function pattern_1(){
+  function A(arg){
+    if(!(this instanceof A))  //this가 A의 인스턴스인지 확인하는 분기문
+      return new A(arg);
+    this.value = arg ? arg : 0;
+  }
+
+  var a = new A(100);
+  var b = A(10);
+
+  console.log(a.value);
+  console.log(b.value);
+  console.log(global.value);  
+}
