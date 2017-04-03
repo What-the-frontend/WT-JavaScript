@@ -6,6 +6,15 @@
     <script type="text/javascript" src="function.js"></script>
   </head>
   <body>
+    <script type="text/javascript">
+    var array = new Array(3);
+    array.push('data');
+    console.log(array[3]);  //data
+    array.pop(4);
+    console.log(array[3]);  //undefined
+    array.splice(2, 1);
+    console.log(array.length);
+    </script>
     <button type="button" onclick="pyramid_1()" name="pyramid">pyramid_1</button>
     <button type="button" onclick="fibonachi()" name="fibonachi">fibonachi</button>
     <button type="button" onclick="ArrayAndObject()" name="ArrayAndObject">Array and Object</button>
