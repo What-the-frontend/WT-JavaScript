@@ -33,6 +33,7 @@ function fibonachi(){
     console.log(a);
   }
 }
+//1 1 2 3 5 8 13 21 34 55
 
 //Array & Object
 function ArrayAndObject(){
@@ -131,5 +132,16 @@ function pattern_1(){
 
   console.log(a.value);
   console.log(b.value);
-  console.log(global.value);  
+  console.log(global.value);
+}
+
+function Exception(){
+  function UserException(message){
+    this.message = message;
+    this.name="UserException"
+  }
+  UserException.prototype.toString = function(){
+    return this.name + ": " + this.message + '"';
+  }
+  throw new UserException('wow');
 }
