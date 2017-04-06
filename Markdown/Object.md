@@ -22,6 +22,13 @@ var obj = {
     name : 'tester',
     age : 17
 };</pre>
+obj객체내에 name, age 프로퍼티를 객체 리터럴을 이용해서 생성해줬다.  
+
+Object객체를 이용할 때는 이렇게 한다.
+<pre>
+var obj = new Object();
+obj.name = 'tester';
+obj.age = 17;</pre>
 
 ## 3. 객체내에 프로퍼티 읽기/쓰기/갱신
-객체네의 'key : value' 형태로 저장된 요소들을 프로퍼티(Property)라고 부른다.  
+객체내에 'key : value' 형태로 저장된 요소들을 프로퍼티(Property)라고 부른다.
