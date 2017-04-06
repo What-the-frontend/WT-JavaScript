@@ -1,5 +1,8 @@
 var submit = function(){
-  var ID = document.getElementById('dataInput_id');
-  var PW = document.getElementById('dataInput_pw');
+  var memberData = {
+    ID : document.getElementById('dataInput_id'),
+    PW : document.getElementById('dataInput_pw')
+  }
+  return memberData;
 }
-export {submit};
+exports.submit = 'submit';
