@@ -15,8 +15,17 @@ function pyramid_1(){
 // *****
 
 function pyramid_2(){
+  var result = "";
   for(var i=0; i<5; i++){
+    for(var j=i; j<4; j++){
+      result += " ";
+    }
+    for(var j=0; j<i; j++){
+      result += "**";
+    }
+    result += "*\n";
   }
+  console.log(result);
 }
 //     *
 //    ***
