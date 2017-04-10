@@ -154,3 +154,10 @@ function Exception(){
   }
   throw new UserException('wow');
 }
+
+function jQuery_1(){
+  $(document).ready(function(){
+    $("#jQuery_1").css('color', 'yellow');
+  });
+  console.log('jQuery start')
+}
