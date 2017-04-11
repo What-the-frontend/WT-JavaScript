@@ -30,5 +30,16 @@ var obj = new Object();
 obj.name = 'tester';
 obj.age = 17;</pre>
 
+추후에 생성된 객체안에 동적으로 .과 [ ]를 사용해서 프로퍼티 추가가 가능하다.
+<pre>
+obj.newProp = 1;
+obj['newProp2'] = 'new Property';</pre>
+
 ## 3. 객체내에 프로퍼티 읽기/쓰기/갱신
-객체내에 'key : value' 형태로 저장된 요소들을 프로퍼티(Property)라고 부른다.
+객체를 생성한 뒤에 자바스크립트는 객체내에 프로퍼티 읽기/쓰기/갱신할 수 있는 기능을 제공한다.
+
+우선 객체내에 프로퍼티를 읽을 때에는 프로퍼티를 동적으로 생성해줄 때에 사용했었던 .과 [ ]를 사용한다.
+<pre>
+var obj = { name : 'test' };
+console.log(obj.name);  //test
+console.log(obj[name]); //test</pre>
