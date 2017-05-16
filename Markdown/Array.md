@@ -50,8 +50,13 @@ Array.forEach(alphabet, index, arr){
     // A 0
     // B 1
     // C 2
-}
-</pre>
+}</pre>
+
+## Array.isArray(obj)
+
+## Array.from(arrayLike[, mapFn[, thisArg]])
+
+## Array.of(element0[, element1[, ...[, elementN]]])
 
 
 
