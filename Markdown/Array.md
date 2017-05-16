@@ -38,3 +38,20 @@ console.log(array.length) //3
 array.splice(2, 1);
 console.log(array.length) //2</pre>
 splice는 pop과 달리 인덱스를 삭제한다. 배열의 길이가 줄어드는 것을 보면 알 수 있다. splice(start, deleteCount, item...)
+
+# Array.prototype Methods.
+
+## Array.forEach(item, index, array)
+Array의 prototype 메소드 중 하나인 forEach( )는 다른 언어에 있는 for-each 문과 같이 배열의 첫 인덱스부터 마지막 인덱스까지 모두 불러오면서 item, index를 return한다.
+<pre>
+var arr = ['A', 'B', 'C'];
+Array.forEach(alphabet, index, arr){
+    console.log(alphabet, index);
+    // A 0
+    // B 1
+    // C 2
+}
+</pre>
+
+
+
