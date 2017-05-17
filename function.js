@@ -99,7 +99,14 @@ function isArrayEx(){
   console.log(Array.isArray(arr), Array.isArray(arrLike));
 }
 
+function ofEx(){
+  var arr;
+  arr = Array.of('A', 'B', 'C');
+  console.log(arr);
+}
+
 document.getElementById("Array_isArray").addEventListener("click", isArrayEx ,false);
+document.getElementById("Array_of").addEventListener("click", ofEx, false);
 
 //function
 function Function(){  //함수 또한 객체이다. 일급 객체로 취급이되며 그만큼 고려할 것들이 많다.
