@@ -92,6 +92,15 @@ function ArrayAndObject(){
   }
 }
 
+function isArrayEx(){
+  var arr = ['A', 'B'];
+  var arrLike = "AB";
+  
+  console.log(Array.isArray(arr), Array.isArray(arrLike));
+}
+
+document.getElementById("Array_isArray").addEventListener("click", isArrayEx ,false);
+
 //function
 function Function(){  //함수 또한 객체이다. 일급 객체로 취급이되며 그만큼 고려할 것들이 많다.
   function declare(){ //함수 선언형을 이용한 함수 선언방법.
