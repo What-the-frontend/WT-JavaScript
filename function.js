@@ -95,13 +95,14 @@ function ArrayAndObject(){
 function isArrayEx(){
   var arr = ['A', 'B'];
   var arrLike = "AB";
-  
+  console.log("Array.isArray Example");
   console.log(Array.isArray(arr), Array.isArray(arrLike));
 }
 
 function ofEx(){
   var arr;
   arr = Array.of('A', 'B', 'C');
+  console.log("Array.of Example: ");
   console.log(arr);
 }
 
@@ -177,3 +178,9 @@ function jQuery_1(){
   });
   console.log('jQuery start')
 }
+
+var arrayTable = document.getElementById("ArrayTable");
+arrayTable.style.display = "none";
+document.getElementById("ArrayItems").addEventListener("click", () => {
+  arrayTable.style.display = "block";
+}, false);
