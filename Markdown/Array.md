@@ -43,14 +43,7 @@ splice는 pop과 달리 인덱스를 삭제한다. 배열의 길이가 줄어드
 
 ## Array.forEach(item, index, array)
 Array의 prototype 메소드 중 하나인 forEach( )는 다른 언어에 있는 for-each 문과 같이 배열의 첫 인덱스부터 마지막 인덱스까지 모두 불러오면서 item, index를 return한다.
-<pre>
-var arr = ['A', 'B', 'C'];
-Array.forEach(alphabet, index, arr){
-    console.log(alphabet, index);
-    // A 0
-    // B 1
-    // C 2
-}</pre>
+--수정필요--
 
 ## Array.isArray(obj)
 매개변수로 받은 obj(객체)가 배열인지 아닌지를 판별한다. 배열이라면 true를 return하고 배열이 아니라면 false를 return한다.
@@ -62,9 +55,15 @@ console.log(Array.isArray(arr), Array.isArray(arrLike));
 //true false</pre>
 
 ## Array.from(arrayLike[, mapFn[, thisArg]])
+arrayLike객체를 Array로 바꿔주는 함수이다. 예를 들어서 단순 문자열은 Array.prototype을 상속받지 못했기 때문에 Array의 함수들을 사용하지 못한다. 이럴 때 이 함수를 사용하면 Array로 변경되기 때문에 모든 함수가 사용가능해진다.
+<pre>
+var arrLike = 'ABCD';
+var arr = Array.from(arrLike);
+console.log(arr.forEach(alphabet, index, arr))
+</pre>
 
 ## Array.of(element0[, element1[, ...[, elementN]]])
-간단히 말해서 배열을 생성해주는 메소드이다. 전달받은 인자값들로 구성된 배열을 return한다.
+간단히 말해서 배열을 생성해주는 함수이다. 전달받은 인자값들로 구성된 배열을 return한다.
 <pre>
 var arr;
 arr = Array.of('A', 'B', 'C');
