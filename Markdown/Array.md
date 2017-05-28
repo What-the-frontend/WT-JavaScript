@@ -41,9 +41,8 @@ splice는 pop과 달리 인덱스를 삭제한다. 배열의 길이가 줄어드
 
 # Array.prototype Methods.
 
-## Array.forEach(item, index, array)
-Array의 prototype 메소드 중 하나인 forEach( )는 다른 언어에 있는 for-each 문과 같이 배열의 첫 인덱스부터 마지막 인덱스까지 모두 불러오면서 item, index를 return한다.
---수정필요--
+## Array.forEach(callback[, thisArg])
+callback함수는 currentValue, index, array를 인자로 받는다.
 
 ## Array.isArray(obj)
 매개변수로 받은 obj(객체)가 배열인지 아닌지를 판별한다. 배열이라면 true를 return하고 배열이 아니라면 false를 return한다.
