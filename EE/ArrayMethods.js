@@ -8,11 +8,12 @@ document.getElementById("Array_isArray").addEventListener("click", function () {
 
 document.getElementById("Array_of").addEventListener("click", function () {
     var arr2 = Array.of('A', 'B', 'C');
-    console.log("Array.of Example: ");
+    console.log("Array.of Example");
     console.log(arr2);
 }, false);
 
 document.getElementById("Array_forEach").addEventListener("click", function () {
+    console.log("Array.forEach Example");
     arr.forEach(function (element, index, arr) {
         console.log(element, index, arr);
     });
