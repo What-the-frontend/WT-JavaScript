@@ -1,5 +1,6 @@
 var arrayTable = document.getElementById("ArrayTable");
 arrayTable.style.display = "none";
-document.getElementById("ArrayItems").addEventListener("click", () => {
-  arrayTable.style.display = "block";
+
+document.getElementById("ArrayItems").addEventListener("click", function(){
+  arrayTable.style.display = "table";
 }, false);
