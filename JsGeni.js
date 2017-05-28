@@ -1,4 +1,4 @@
-var arrayTable = document.getElementById("ArrayTable");
+var arrayTable = document.getElementById("ArrayItemsTable");
 arrayTable.style.display = "none";
 
 document.getElementById("ArrayItems").addEventListener("click", function(){
