@@ -6,5 +6,5 @@ document.getElementById("Exception").addEventListener("click", function () {
     UserException.prototype.toString = function () {
         return this.name + ": " + this.message + '"';
     }
-    throw new UserException('wow');
+    throw new UserException('Occure Exception!');
 }, false);
