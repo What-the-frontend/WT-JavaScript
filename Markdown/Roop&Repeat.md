@@ -21,3 +21,18 @@ console.log(count);
 //2</pre>
 - for ~ in
 - for ~ of
+
+
+## while문
+- while
+<pre>
+while(condition){
+    statement
+}</pre>
+while문은 주로 무한 루프를 발생시킬 때 사용한다. 물론 그것 외에도 for문과 동일하게 루프와 반복을 동작시킨다.
+<pre>
+while(true){
+    console.log("a");
+}
+//aaaaaaaaaa...</pre>
+- do ~ while
