@@ -7,11 +7,6 @@
 
 함수의 선언 방법 또한 객체를 생성할 때와 같이 다양한 방법이 있다.
 
-- Function 객체를 이용한 방법
-<pre>
-var func = new Function()</pre>
--내용 추가 필요(공부 더 필요)-
-
 - 변수에 담는 방법
 <pre>
 var func = function(){
