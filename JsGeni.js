@@ -11,6 +11,6 @@ document.getElementById("AlgorithmItems").addEventListener("click", function(){
   algorithmTable.style.display = "table";
 }, false);
 
-var notice_1 = function(){
+function notice_1(){
     alert("Check your bowser console. \nChrome: (Window)ctrl+shift+i / (Mac)command+shift+i");
 }

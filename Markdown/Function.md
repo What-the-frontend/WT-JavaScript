@@ -19,3 +19,20 @@ var func = function(){
 }
 console.log(func());
 //sucess</pre>
+
+## 익명 함수
+자바스크립트의 함수는 이름이 기명되지 않아도 사용이 가능하다. 앞서 선언방식 중에 변수에 담는 방법 또한 익명 함수를 사용한 것이다.
+<pre>
+var func = function(){return 0;}</pre>
+
+- 즉시 실행 함수
+  
+  앞서 말했던 함수는 호출 시에 실행이 되는 구조였지만 즉시 실행 함수는 웹페이지가 동작하자마자 실행이 되는 함수다. 기존의 function에 괄호를 씌우면 된다.
+  <pre>
+  (function(){
+      console.log("hello");
+  })()
+  
+  (function(){
+      console.log("world");
+  })()</pre>
