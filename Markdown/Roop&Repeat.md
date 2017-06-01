@@ -22,6 +22,7 @@ console.log(count);
 - for ~ in
 - for ~ of
 
+## 재귀 함수
 
 ## while문
 - while
