@@ -7,7 +7,15 @@
 
 함수의 선언 방법 또한 객체를 생성할 때와 같이 다양한 방법이 있다.
 
-- 변수에 담는 방법
+- function을 이용해서 바로 선언
+<pre>
+function func(){
+    return "success";
+}
+console.log(func());
+//success</pre>
+
+- 함수 객체를 변수에 담는 방법
 <pre>
 var func = function(){
     return "sucess";
