@@ -28,6 +28,13 @@ console.log(func());
 var func = new Function("return hello;");
 console.log(func())</pre>
 
+생성자를 알아보자. 자바스크립트는 함수를 이용해서 생성자를 만들고 객체를 만들어 낼 수 있다.
+<pre>
+var cons = function(key, value){
+    this.key = key;
+    this.value = value;
+}</pre>
+
 ## 클로저
 
 클로저는 함수안에 함수가 들어갈 수 있다는 개념이다. 이 때 함수는 일급 객체이기 때문에 외부 함수가 내부 함수를 가져다가 사용하는 것이 가능하고 내부 함수내에 변수를 사용할 수 있다.
