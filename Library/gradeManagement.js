@@ -3,7 +3,10 @@
 
     var checkbox = function(){
         Array.from(checkboxList).forEach(function(element){
-            element.classList.contains("on");
+            if(element.classList.contains("on")){
+                element.classList.remove("on");
+            } else if(!element.classList.contains("on")){
+            }
         })
     }
 }())
