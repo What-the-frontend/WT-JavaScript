@@ -72,3 +72,8 @@ var func = function(){return 0;}</pre>
 <pre>
 function </pre>
 
+
+## Function.prototype
+- bind(this Arg[, arg1[, arg2[, ...]]]])
+
+
