@@ -4,51 +4,44 @@ import Header from './Header';
 import List from './List';
 
 class App extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            value: Math.round(Math.random()*100)
-        }
-        this.updateValue = this.updateValue.bind(this);
-    }
-
-    updateValue(randomValue){
-        this.setState({
-            value: randomValue
-        });
-    }
-
-
     render(){
 
         return (
             <div>
                 <Header title={this.props.headerTitle}/>
-                <List/>
-                <RandomNumber number={this.state.value}
-                              onUpdate={this.updateValue}/>
+                <Content />
             </div>
         );
     }
 }
 
-class RandomNumber extends React.Component {
-    updateNumber(){
-        let value = Math.round(Math.random()*100);
-        this.props.onUpdate(value);
-    }
-
-    constructor(props){
-        super(props);
-        this.updateNumber = this.updateNumber.bind(this);
-    }
+class Content extends React.Component{
 
     render(){
+        var rows = [];
+        for(var i=0; i<5; i++){
+            rows.push(<Row key={i}/>);
+        }
         return (
-            <div>
-                <h1>RANDOM NUMBER: { this.props.number }</h1>
-                <button onClick={this.updateNumber}>Randomize</button>
-            </div>
+            <table>
+                <tbody>
+                    {rows}
+                </tbody>
+            </table>
+        );
+    }
+}
+
+class Row extends React.Component{
+    render(){
+        return (
+             <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+                <td>E</td>
+            </tr>
         );
     }
 }
