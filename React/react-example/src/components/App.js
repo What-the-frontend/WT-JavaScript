@@ -16,7 +16,6 @@ class App extends React.Component {
 }
 
 class Content extends React.Component{
-
     render(){
         var rows = [];
         for(var i=0; i<5; i++){
