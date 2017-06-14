@@ -76,4 +76,16 @@ function </pre>
 ## Function.prototype
 - bind(this Arg[, arg1[, arg2[, ...]]]])
 
+## Arrow Function
+Java에서의 람다식과 비슷하게 생긴 익명 함수를 축약시킬 수 있는 방법중 하나다. 
+
+<pre>
+var name = () => {
+    return "test";
+}
+console.log(name)
+//test</pre>
+
+예제에서 보이듯이 (매개변수) => {함수 구현부} 이렇게 나뉜다.
+
 
