@@ -35,7 +35,7 @@ var cons = function(key, value){
     this.value = value;
 }</pre>
 
-## 클로저
+## 클로저(Closure)
 
 클로저는 함수안에 함수가 들어갈 수 있다는 개념이다. 이 때 함수는 일급 객체이기 때문에 외부 함수가 내부 함수를 가져다가 사용하는 것이 가능하고 내부 함수내에 변수를 사용할 수 있다.
 <pre>
@@ -45,10 +45,24 @@ function outside(x){
     }
     return inside;
 }
+var makeFunc = outside(5);
+console.log(makeFunc(3));
+// 8</pre>
+Closure는 위의 예제코드에서 inside함수를 의미한다. 원래 다른 언어 같았으면 함수 내에 선언된 지역변수나 인자는 한 번 실행되면 재사용이 불가능하게 된다. 하지만 클로저는 다르다. 위의 예제 코드를 보면 ouside함수의 인수인 x가 멀쩡하게 있는 것을 알 수 있다. 이는 makeFunc안에 outside함수에 인자가 5로 들어간 상태로 참조되었기 때문이다. makeFunc는 선언 당시에 그 문법적 환경에 대한 참조를 유지하기 때문에 값이 사라지지 않는 것이다.
 
-funcOut = outside(5);
-funcIn = funcOut(3);</pre>
-위의 예제 코드를 보면 outside함수내에 inside함수가 있는 것을 알 수 있다. funcOut은 outside함수를 매개변수로 5를 넘기면서 호출한 리턴값을 담는다. 따라서 funcOut = function inside(); 가 된다. 그리고 바로 밑에 줄에 funcIn은 inside(3)을 실행한 것과 같이 실행이 된다. 이 때의 funcIn의 값은 8이 된다. 이것은 클로저의 성질에 의해서 가능한 일이다. 첫 번째로 외부 함수가 호출될 때의 x값이 내부 함수가 호출될 때에 이용되었다는 것은 메모리에 담고 있는다는 것이다. 따라서 클로저는 내부 함수가 어떠한 곳에서도 호출되지 않는 이상 메모리를 담고 있는다는 것을 알 수 있다.
+실질적으로 이 클로저를 사용할 때는 메소드가 하나 있는 객체를 선언할 때 사용한다. 예를 들어서 html내에 text요소의 font-size를 변경하는 함수가 있다. 이는 클로저를 이용하면 다양한 곳에서 사용이 가능해진다.
+
+<pre>
+function setSize(size){
+    return function(){
+        docment.body.style.fontSize = size + 'px';
+    }
+}
+
+var size10 = setSize(10);
+var size15 = setSize(15);</pre>
+
+위와 같이 선언하고 size10과 size15를 특정 이벤트에 넣어주기만하면 폰트 사이즈가 적용이 되는 것이다.
 
 ## 익명 함수
 자바스크립트의 함수는 이름이 기명되지 않아도 사용이 가능하다. 앞서 선언방식 중에 변수에 담는 방법 또한 익명 함수를 사용한 것이다.
