@@ -18,8 +18,11 @@ console.log(func());
 - 함수 표현식
 <pre>
 var func = function(){
-    return "sucess";
+    console.log("test");
 }
+
+<button onclick="func()">test</button>
+
 console.log(func());
 //sucess</pre>
 
