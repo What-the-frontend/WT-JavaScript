@@ -104,5 +104,9 @@ filter함수는 배열내의 요소들을 기준에 맞춰서 걸러낸 다음�
 var arr = [ 10, 40, 20, 35 ];
 var arr2 = arr.filter((element, index, array) => {
     return element >= 20;
-});</pre>
+});
+console.log(arr2);
+//[ 40, 20, 35 ]</pre>
+위의 예제 코드에서 처럼 filter함수의 매개변수로는 콜백함수가 들어간다. 콜백함수의 내용은 element를 판별할 조건에 맞게 true, false로 변환해주는 코드가 들어간다. 그리고 filter의 반환 값은 true를 반환한 요소들을 가진 배열이다.
+
 
