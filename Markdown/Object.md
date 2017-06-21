@@ -56,3 +56,6 @@ let obj = Object.assign({}, {
 });
 console.log(obj);
 //{key: "value"}</pre>
+
+## Object.create
+지정된 프로토타입 및 속성을 갖는 객체를 생성합니다.
