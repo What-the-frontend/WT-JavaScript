@@ -1,5 +1,7 @@
 배열
 ===
+배열은 여러 데이터를 한 곳에 저장할 때 사용한다. LIFO(Last In First Out)의 형태를 갖는 스택구조이다. 예를 들어서 1학년 1반의 학생들의 정보를 한곳에 모두 담을때 배열을 사용할 수 있는 것이다.
+
 ## 1. 선언방법  
 배열의 선언 방법에는 배열 객체(Array)를 이용해서 선언하는 방법, 배열 리터럴을 이용해서 선언하는 방법이 있다.
 <pre>
@@ -17,10 +19,14 @@ array1.property = 'hello';
 console.log(array1.property); //hello</pre>
 
 ## 3. 배열의 길이
-배열의 길이는 length 프로퍼티를 활용해서 사용자가 지정해줄 수 있다.
+배열의 길이는 length 프로퍼티를 활용해서 확인할 수 있고 사용자가 지정해줄 수도 있다.
 <pre>
 array.length = 5;</pre>
-이 때 크기는 늘리고 인덱스 값은 지정해주지 않으면 undefined 값이 지정된다.
+이를 활용해서 주로 배열의 요소들을 반복문을 통해서 모두 이용할때 사용한다.
+<pre>
+for(var i = 0; i < array.length; i++){
+    console.log(array[i]);
+}</pre>
 
 ## 4. push(), pop(), splice()
 push()와 pop()메서드는 배열 객체의 표준 메서드로 배열에 값을 추가하고 빼는 것이 가능하다.
