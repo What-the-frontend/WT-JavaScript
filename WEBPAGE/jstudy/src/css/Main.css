@@ -1,0 +1,130 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+#main{
+    display: flex;
+    width: 100%;
+    min-width: 1440px;
+    height: 100%;
+    font-size: 0;
+    text-align: center;
+    font-family: 'Nanum Gothic', serif; 
+}
+#section{
+    overflow: hidden;
+    cursor: pointer;
+}
+#PureSection{
+    display: flex;
+    vertical-align: top;
+    align-items: center;
+    width: 50%;
+    min-width: 720px;
+    height: 100%;
+    background-image: url("../res/bg_PureSection.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+#PureSection:hover #background{
+    background: rgba(255, 255, 148, 0);
+}
+#PureSection:hover{
+    -webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+#PureSection #background{
+    width: 50%;
+    min-width: 720px;
+    height: 100%; 
+    background: rgba(255, 255, 148, 0.4);
+    position: absolute;
+    transition: .5s;
+}
+#PureSection article{
+    width: 100%;
+    z-index: 1;
+    align-items: center;
+}
+#PureSection #head{
+    font-size: 80px;
+    color: #FF7F00;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+#PureSection #content{
+    font-size: 25px;
+    color: #FF7F00;
+    margin-top: 25px;
+}
+#LFSection{
+    display: flex;
+    vertical-align: top;
+    align-items: center;
+    width: 50%;
+    min-width: 720px;
+    height: 100%;
+    background-image: url("../res/bg_LFSection.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+#LFSection:hover #background{
+    background: rgba(166, 255, 150, 0);
+}
+#LFSection:hover{
+    -webkit-transform: scale(1.1);
+	transform: scale(1.1);
+}
+#LFSection #background{
+    width: 50%;
+    min-width: 720px;
+    height: 100%;
+    position: absolute;
+    background: rgba(166, 255, 150, 0.4);
+    transition: .5s;
+}
+#LFSection article{
+    width: 100%;
+    z-index: 1;
+    align-items: center;
+    margin-bottom: 50px;
+}
+#LFSection #head{
+    font-size: 60px;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+#LFSection #content{
+    font-size: 25px;
+    color: white;
+    margin-top: 25px;
+}
+#line{
+    width: 300px;
+    height: 5px;
+    margin: 0 auto;
+    background: black;
+}
+#logo{
+    width: 200px;
+    height: 200px;
+    background-image: url("../res/logo.png");
+    background-size: cover;
+    position:fixed;
+    left:50%;
+    top:50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+}
+@media(max-width: 1440px){
+    #logo{
+        margin-left: 0px;
+        left: 720px;
+    }
+}
