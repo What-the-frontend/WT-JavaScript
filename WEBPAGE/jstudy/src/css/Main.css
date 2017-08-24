@@ -111,7 +111,7 @@
     margin: 0 auto;
     background: black;
 }
-#logo{
+#main #logo{
     width: 200px;
     height: 200px;
     background-image: url("../res/logo.png");

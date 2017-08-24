@@ -2,10 +2,6 @@ import React, {Component} from 'react';
 import '../css/Main.css';
 
 class Main extends Component{
-    constructor(){
-        super();
-    }
-
     render(){
         return(
             <div id="main">
