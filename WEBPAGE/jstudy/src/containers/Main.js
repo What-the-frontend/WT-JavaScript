@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import {selectPureOrLf} from '../actions'
+import PropTypes from 'prop-types';
 import '../css/Main.css';
 
 class Main extends Component{
@@ -10,16 +11,12 @@ class Main extends Component{
         this.onSectionClick = this.onSectionClick.bind(this);
     }
 
-    componentDidMount(){
-        const {store} = this.context;
-    }
-
     onSectionClick(state){
         browserHistory.push('/post');
     }
 
     render(){
-        const {dispatch, initialSelect} = this.props;
+        const {dispatch} = this.props;
         const {store} = this.context;
         console.log(store.getState().initialSelect);
         return(
@@ -43,7 +40,7 @@ class Main extends Component{
 }
 
 Main.contextTypes = {
-    store: React.PropTypes.object
+    store: PropTypes.object
 }
 
 Main.defaultProps = {

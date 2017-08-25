@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import React, {Component} from 'react';
+import React from 'react';
 import {Provider} from './components';
 import {Main, Post} from './containers';
 import {createStore} from 'redux';
@@ -8,7 +8,6 @@ import reducer from './reducers';
 import {
     Router,
     Route,
-    IndexRoute,
     browserHistory
 } from 'react-router';
 

@@ -1,20 +1,11 @@
 import React, {Component} from 'react';
 import {Header, Side, Content} from '../components';
 import {connect} from 'react-redux';
-import {selectPureOrLf} from '../actions';
+import PropTypes from 'prop-types';
 import '../css/Post.css';
 
 class Post extends Component{
-    constructor(props){
-        super(props);
-    }
-
-    componentDidMount(){
-        const {store} = this.context;
-    }
-
     render(){
-        const {initialSelect, dispatch} = this.props;
         const {store} = this.context;
         return(
             <div id="post">
@@ -28,7 +19,7 @@ class Post extends Component{
     }
 }
 Post.contextTypes = {
-    store: React.PropTypes.object
+    store: PropTypes.object
 }
 
 function now(state){

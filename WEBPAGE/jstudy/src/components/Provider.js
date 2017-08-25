@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Provider extends Component{
     getChildContext(){
@@ -12,7 +13,7 @@ class Provider extends Component{
     }
 }
 Provider.childContextTypes = {
-    store: React.PropTypes.object
+    store: PropTypes.object
 };
 
 export default Provider;
