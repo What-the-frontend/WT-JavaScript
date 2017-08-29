@@ -42,4 +42,4 @@ obj['newProp2'] = 'new Property';</pre>
 <pre>
 var obj = { name : 'test' };
 console.log(obj.name);  //test
-console.log(obj[name]); //test</pre>
+console.log(obj['name']); //test</pre>
