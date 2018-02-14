@@ -8,11 +8,11 @@ basename: string
 
 getUserConfirmation: func
 ---
-네비게이션을 확인하기 위해서 사용되는 함수이다. `window.confirm` 을 사용하는 것이 default설정이다.
+네비게이션을 확인하기 위해서 사용되는 함수입니다. `window.confirm` 을 사용하는 것이 default설정입니다.
 
 forceRefresh: bool
 ---
-만약 값이 true라면 라우터는 가리키고 있는 페이지를 전부 refresh시킨다. 아마 이 함수는 브라우저가 HTML5 history API를 지원하지 않을때만 사용할것이다.
+만약 값이 true라면 라우터는 가리키고 있는 페이지를 전부 refresh시킨다. 아마 이 함수는 브라우저가 HTML5 history API를 지원하지 않을때만 사용할것입니다.
 
 kyeLength: number
 ---
@@ -20,4 +20,4 @@ location의 길이값이다. Default값은 6.
 
 children: node
 ---
-렌더(render)를 위한 하나의 자식 엘리먼트(element)이다.
+렌더(render)를 위한 하나의 자식 엘리먼트(element)입니다.
