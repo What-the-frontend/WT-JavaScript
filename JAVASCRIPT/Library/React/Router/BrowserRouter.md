@@ -12,7 +12,7 @@ getUserConfirmation: func
 
 forceRefresh: bool
 ---
-만약 값이 true라면 라우터는 가리키고 있는 페이지를 전부 refresh시킨다. 아마 이 함수는 브라우저가 HTML5 history API를 지원하지 않을때만 사용할것입니다.
+만약 값이 true라면 라우터는 가리키고 있는 페이지를 전부 refresh시킵니다. 아마 이 함수는 브라우저가 HTML5 history API를 지원하지 않을때만 사용할것입니다.
 
 kyeLength: number
 ---
