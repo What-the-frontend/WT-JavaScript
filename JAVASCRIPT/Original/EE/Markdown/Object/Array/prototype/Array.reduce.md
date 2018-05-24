@@ -1,21 +1,22 @@
 Array.prototype.reduce
 ===
-reduce메소드는 배열의 모든 요소에 대해서 지정된 콜백을 호출한다. 이때 filter나 forEach와 다른 점은 콜백의 반환값이 결과에 누적되며 다음 콜백을 호출할때 사용된다는 점이다. 콜백함수의 인자로는 4개가 있다.
-- previousValue
-    - 이전 콜백에서 반환된 값
-- currentValue
-    - 배열 내 현재 처리되고 있는 요소
-- currentIndex
-    - 배열 내 현재 처리되고 있는 요소의 인덱스
-- array
-    - reduce에 호출되는 배열
 
+```javascript
+arr.reduce(callback[, initialValue])
 ```
-[0, 1, 2, 3, 4].reduce((previousValue, currentValue, currentIndex, arr) => {
-    console.log(previousValue)  //0, 1, 3, 6
-    console.log(currentValue)   //1, 2, 3, 4
-    console.log(currentIndex)   //1, 2, 3, 4
-    console.log(arr)    //[0, 1, 2, 3, 4] * 4
-    return previousValue + currentValue;
-});
+
+reduce 메소드는 배열의 각 요소마다 함수를 적용해서 하나의 값으로 줄여줍니다.
+
+- callback (배열의 각 요소에 적용될 함수)
+    - <b>accumulator:</b> 누적 계산 값
+    - <b>currentValue:</b> 현재 값
+    - <b>currentIndex:</b> 현재 인덱스
+    - <b>array:</b> 현재 reduce가 적용된 배열
+- initialValue (첫 호출에 인수로 사용하는 값)
+
+```javascript
+[1, 2, 3, 4, 5].reduce(function(accumulator, currentValue, currentIndex, array) {
+    return accumulator * currentValue;
+})
+// = 120
 ```
