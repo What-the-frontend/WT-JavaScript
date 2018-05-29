@@ -8,7 +8,7 @@ React 14 버전부터 소개된 컴포넌트를 더욱 쉽게 선언할 수 있�
 import React from 'react';
 
 const Stateless = () => {
-  return <div>I'm Stateless Functional Component!!</div>
+  return <div>I am Stateless Functional Component!!</div>
 }
 
 export default Stateless;
