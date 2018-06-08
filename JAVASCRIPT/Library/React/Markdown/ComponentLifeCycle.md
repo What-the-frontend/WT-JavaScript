@@ -20,47 +20,126 @@ React에서 Component는 몇몇의 생명주기 메소드(lifecycle method)를 �
 ```javascript
 constructor(props)
 ```
-`constructor()` 메소드는 Component가 마운팅 되기전에 호출된다. 만약에 `React.Component` 의 서브 클래스(Sub Class)에서 `constructor()` 메소드를 호출한다면 다른 코드를 작성하기전에 `super(props)` 를 입력해줘야한다. 그렇지않으면 `constructor()` 내부에 `this.props` 가 정의되지 않아서 버그를 발생시킬 수 있다.
+* 호출시점: 컴포넌트가 마운트 되기전에 호출
+* 사용용도
+  * 상태(state) 초기화
+    * `this.state` 를 사용해서 객체를 추가
+  * 이벤트 핸들러(Event Handler) 바인딩(bind)
+* 메소드내에서 하면 <b>안되는</b> 행위
+  * `setState()` 를 사용한 상태(state) 접근
+  * 사이드 이펙트(Side effect)
+  * 구독(Subscription)
 
-`constructor()` 내부에서는 사이드 이펙트나 구독하는 행위를 피해야하고 대신, 사용하기 위해선 `componentDidMount()` 에서 사용한다.
+`constructor()` 메소드는 사용용도가 있을때만 `super(props)` 와 함께 `React.Component` 를 상속받은 class 내부에 작성한다.
+```javascript
+import React from 'react';
 
-`constructor()` 는 상태(state)값을 초기화하기에 적절한 공간이다. 초기화는 `this.state` 에 객체를 추가하는 방식으로 한다; `constructor()` 내부에서 `setState()` 를 호출하면 안된다. `constructor()` 는 또한 클래스 인스턴스에 이벤트 헨들러(Event Handler)를 바인딩(bind)시킬 때 사용된다.
+class Test extends React.Component {
+  constructor(props) {
+    super(props);   // 'this.props' 정의를 위해서 작성해야만한다.
 
-만약 상태값을 초기화하거나 이벤트 헨들러를 바인딩시킬 필요가 없다면 굳이 `constructor()` 를 작성할 필요가 없다. 
+    this.state = {
+      count: 0    // 다음과 같이 'this.state' 객체 내부에 state를 초기화한다.
+    }
+    
+    // setState({ count: 0 }), this.EventMethod = function() {...} 등의 사이드 이펙트는 사용할 수 없다.
 
-`props` 를 기반으로 `state` 를 초기화하는것도 가능하다.
+    this.EventMethod = this.EventMethod.bind(this);   // 메소드를 클래스에 바인딩 시켜준다.
+  }
+  // this.state = {} 를 사용한 상태 초기화, 메소드 바인딩(bind)가 필요없다면 위의 모든 코드가 생략 가능하다.
+}
+```
+
+> <b>원문해석</b>
+>
+>`constructor()` 메소드는 Component가 마운팅 되기전에 호출된다. 만약에 `React.Component` 의 서브 클래스(Sub Class)에서 `constructor()` 메소드를 호출한다면 다른 코드를 작성하기전에 `super(props)` 를 입력해줘야한다. 그렇지않으면 `constructor()` 내부에 `this.props` 가 정의되지 않아서 버그를 발생시킬 수 있다.
+>
+>`constructor()` 내부에서는 사이드 이펙트나 구독하는 행위를 피해야하고 대신, 사용하기 위해선 `componentDidMount()` 에서 사용한다.
+>
+>`constructor()` 는 상태(state)값을 초기화하기에 적절한 공간이다. 초기화는 `this.state` 에 객체를 추가하는 방식으로 한다; `constructor()` 내부에서 `setState()` 를 호출하면 안된다. `constructor()` 는 또한 클래스 인스턴스에 이벤트 헨들러(Event Handler)를 바인딩(bind)시킬 때 사용된다.
+>
+>만약 상태값을 초기화하거나 이벤트 헨들러를 바인딩시킬 필요가 없다면 굳이 `constructor()` 를 작성할 필요가 없다. 
+>
+>`props` 를 기반으로 `state` 를 초기화하는것도 가능하다.
 
 ### static getDerivedStateFromProps()
 ```javascript
 static getDerivedStateFromProps(props, state)
 ```
-`getDerivedStateFromProps()` 는 `render()` 메소드가 호출되기 바로전에 호출되기전과 초기 마운트와 뒤에 마운트가 이루어질때 호출됩니다. 상태(state)를 업데이트를 하기위해선 객체(Object)를 반환해야하고 업데이트를 하지않기 위해서는 null을 반환해야한다.
+* 호출시점: `render()` 메소드가 호출되기 직전, 초기 마운트 및 후속 업데이트시 호출
+* 사용용도
+  * `props` 를 기반으로 `state` 를 초기화 시킨다.
+* 메소드내에서 하면 <b>안되는</b> 행위
 
-이 메소드는 다른 이유에 개의치않고 렌더링시에 항상 호출된다. `UNSAFE_componentWillMount` 와 달리 부모가 리렌더링 시키거나 로컬 `setState` 의 결과 아닐 경우에 호출된다.
-
-`getDerivedStateFromProps()` 는 props에서 파생된 state를 얻는다는 의미를 갖는다. 아마 아까 `constructor()` 의 마지막 부분에서 `props` 를 기반으로 `state` 를 초기화할때 사용하는 메소드가 아닐까라는 생각이다.
+> <b>원문 해석</b>
+>
+>`getDerivedStateFromProps()` 는 `render()` 메소드가 호출되기 바로전에 호출되기전과 초기 마운트와 뒤에 마운트가 이루어질때 호출됩니다. 상태(state)를 업데이트를 하기위해선 객체(Object)를 반환해야하고 업데이트를 하지않기 위해서는 null을 반환해야한다.
+>
+>이 메소드는 다른 이유에 개의치않고 렌더링시에 항상 호출된다. `UNSAFE_componentWillMount` 와 달리 부모가 리렌더링 시키거나 로컬 `setState` 의 결과 아닐 경우에 호출된다.
+>
+>`getDerivedStateFromProps()` 는 props에서 파생된 state를 얻는다는 의미를 갖는다. 아마 아까 `constructor()` 의 마지막 부분에서 `props` 를 기반으로 `state` 를 초기화할때 사용하는 메소드가 아닐까라는 생각이다.
 
 ### UNSAFE_componentWillMount()
 ```javascript
 UNSAFE_componentWillMount()
 ```
-`UNSAFE_componentWillMount()` 는 마운팅이 발생한 이후에만 호출된다. 이 메소드는 `render()` 전에 호출된다. 그래서 이 메소드에서 `setState` 가 함께 호출되면 추가적으로 렌더링을 발생시키지 않을것이다. 일반적으로, 상태값 초기화를 위해서 이 메소드 대신 `constructor()` 를 추천한다.
+* 호출시점: 컴포넌트가 마운트되기 이전, `render()` 전에 호출
+* 사용용도
+  * 서버 사이드 렌더링시에 hook으로 사용가능
+  * 상태 초기화, (`constructor` 에서 초기화하는것을 지향)
+* 메소드내에서 하면 <b>안되는</b> 행위
+  * 사이드 이펙트(Side effect)
+  * 구독(Subscription)
 
-이 메소드 내부에서는 사이드 이펙트나 구독하는 행위를 피해야하고 대신, 사용하기 위해선 `componentDidMount()` 에서 사용한다.
-
-이 메소드는 서버 사이드 렌더링시에 호출되는 유일한 생명주기 hook다.
-
-원래는 `componentWillMount()` 가 정상적인 이름이고 React v17에서 다시 이름이 정정된다고한다.
+> <b>원문 해석 </b>
+>
+>`UNSAFE_componentWillMount()` 는 마운팅이 발생하기 전에 호출된다. 이 메소드는 `render()` 전에 호출되므로 `setState` 를 동기적으로 호출해도 추가적으로 렌더링을 발생시키지 않는다. 일반적으로, 상태값 초기화를 위해서 이 메소드 대신 `constructor()` 를 추천한다.
+>
+>이 메소드 내부에서는 사이드 이펙트나 구독하는 행위를 피해야하고 대신, 사용하기 위해선 `componentDidMount()` 에서 사용한다.
+>
+>이 메소드는 서버 사이드 렌더링시에 호출되는 유일한 생명주기 hook다.
+>
+>원래는 `componentWillMount()` 가 정상적인 이름이고 React v17에서 다시 이름이 정정된다고한다.
 
 ### componentDidMount()
 ```javascript
 componentDidMount()
 ```
-`componentDidMount()` 는 컴포넌트가 마운트 완료된 후 즉시 호출된다. DOM 노드를 초기화하는 코드는 이 안에 작성해야한다. 만약 remote endpoint에서 데이터를 로드해오고 싶을떄 네트워크 요청 코드를 작성하기에 적절하다.
+* 호출시점: 컴포넌트가 마운트 완료된 직후 호출, 생명주기내에서 한 번만 호출된다.
+* 사용용도
+  * DOM 노드 초기화
+  * 네트워크 요청 코드 작성
+  * 사이드 이펙트(Side effect)
+  * 구독(Subscription)
+* 메소드내에서 하면 <b>안되는</b> 행위
 
-이 메소드는 구독설정하기에 좋다. 만약 이 메소드에서 구독을 설정한다면 `componentWillUnMount` 에서 구독을 해제하는것을 잊지말라.
+```javascript
+import React from 'react';
+import axios from 'axios';
 
-`setState()` 를 이 메소드에서 호출하는것은 추가 렌더링을 발생시키지만 브라우저가 스크린을 업데이트 하기전에 발생할것이다. 이는 사용자가 중간에 `render()` 가 두번 호출되더라도 볼 수 없도록 한다. 이 패턴을 사용할때는 성능 이슈가 발생할 수 있기 때문에 주의해서 사용해야한다.
+class Test extends React.Component {
+  ∙∙∙
+
+    componentDidMount() {
+      // 생명주기내에서 한 번만 호출되기 때문에 AJAX 요청과 같은 사이드 이펙트를 적용시키기에 적절하다.
+      // e.g. axios request
+      axios.get('/test')
+        .then(response => { console.log(response); })
+        .catch(error => { console.log(error); })
+      // setState()는 리렌더링을 발생시키기 때문에 사용하면 안된다.
+    }
+
+  ∙∙∙
+}
+```
+
+><b>원문 해석</b>
+>
+>`componentDidMount()` 는 컴포넌트가 마운트 완료된 후 즉시 호출된다. DOM 노드를 초기화하는 코드는 이 안에 작성해야한다. 만약 remote endpoint에서 데이터를 로드해오고 싶을떄 네트워크 요청 코드를 작성하기에 적절하다.
+>
+>이 메소드는 구독설정하기에 좋다. 만약 이 메소드에서 구독을 설정한다면 `componentWillUnMount` 에서 구독을 해제해야한다.
+>
+>`setState()` 를 이 메소드에서 호출하는것은 추가 렌더링을 발생시키지만 브라우저가 스크린을 업데이트 하기전에 발생할것이다. 이는 사용자가 중간에 `render()` 가 두 번 호출되더라도 볼 수 없다. 이 패턴을 사용할때는 성능 이슈가 발생할 수 있기 때문에 주의해서 사용해야한다.
 
 ## Updating
 업데이트는 props 또는 state가 변경되는걸로 인해서 일어날 수 있다. 이 메소드들은 리렌더링되어질때 호출된다.
@@ -74,15 +153,18 @@ UNSAFE_componentWillReceiveProps(nextProps)
 ```javascript
 shouldComponentUpdate(nextProps, nextState)
 ```
-`sholudComponentUpdate()` 를 사용하면 컴포넌트의 출력이 현재 state와 props의 변경에 영향을 끼치는지 알 수 있다. 기본동작은 모든 상태변경시에 리렌더링(re-render)시키고, 대다수의 경우 기본동작에 의존해야한다.
 
-`shouldComponentUpdate()` 는 새로운 props 혹은 state를 받았을때 렌더링되기 전에 호출된다. 이 메소드는 초기 렌더링이나 `forceUpdate()` 가 사용됐을때는 호출되지 않는다.
-
-만약 `shouldComponentUpdate()` 가 false를 반환할때 현재는 `UNSAFE_componentWillUpdate()`, `render()` 그리고 `componentDidUpdate()` 가 호출되지 않는다.
-
-만약 특정 컴포넌트가 프로파일링 작업 후에 느려지는 경우 `shouldComponentUpdate()` 를 implement 하여 shallow prop과 상태(state)비교를 하다록 `React.PureComponent` 를 상속받도록 수정하면 된다. `React.Component` 는 `shouldComponentUpdate()` 를 impletement 할 수 없기 때문이다. 직접 구현하길 원한다면 `this.props`와 `nextProps` 를 비교하고 `this.state`와 `nextState` 를 비교하고 `false` 를 반환함으로서 React에게 업데이트는 스킵되어도된다고 알리면 된다.
-
-`shouldComponentUpdate()` 내부에서 깊은 동등비교 또는 `JSON.stringify()` 를 사용하는걸 지양한다. 이것은 매우 효율적이지 않고 성능에 해를 끼칠 수 있다.
+><b>원문 해석</b>
+>
+>`sholudComponentUpdate()` 를 사용하면 컴포넌트의 출력이 현재 state와 props의 변경에 영향을 끼치는지 알 수 있다. 기본동작은 모든 상태변경시에 리렌더링(re-render)시키고, 대다수의 경우 기본동작에 의존해야한다.
+>
+>`shouldComponentUpdate()` 는 새로운 props 혹은 state를 받았을때 렌더링되기 전에 호출된다. 이 메소드는 초기 렌더링이나 `forceUpdate()` 가 사용됐을때는 호출되지 않는다.
+>
+>만약 `shouldComponentUpdate()` 가 false를 반환할때 현재는 `UNSAFE_componentWillUpdate()`, `render()` 그리고 `componentDidUpdate()` 가 호출되지 않는다.
+>
+>만약 특정 컴포넌트가 프로파일링 작업 후에 느려지는 경우 `shouldComponentUpdate()` 를 implement 하여 shallow prop과 상태(state)비교를 하도록 `React.PureComponent` 를 상속받으면 된다. `React.Component` 는 `shouldComponentUpdate()` 를 impletement 할 수 없기 때문이다. 직접 구현하길 원한다면 `this.props`와 `nextProps` 를 비교하고 `this.state`와 `nextState` 를 비교하고 `false` 를 반환함으로서 React에게 업데이트는 스킵되어도된다고 알리면 된다.
+>
+>`shouldComponentUpdate()` 내부에서 깊은 동등비교 또는 `JSON.stringify()` 를 사용하는걸 지양한다. 이것은 매우 효율적이지 않고 성능에 해를 끼칠 수 있다.
 
 ### UNSAFE_componentWillUpdate()
 ```javascript
@@ -164,7 +246,7 @@ componentDidUpdate(prevProps, prevState, snapshot)
 
 컴포넌트가 업데이트 됐을때 DOM에서 작업하는것이 가능하다. 또한 이전 props와 현재 props를 비교하는한 네트워크 요청을 보내기에 적절하다.(네트워크 요청은 props가 변경되지 않았다면 불필요할 수 있다.)
 
-## Unmout
+## Unmount
 이 메소드는 컴포넌트가 DOM으로부터 삭제됐을때 호출된다.
 
 ### componentWillUnmount()
