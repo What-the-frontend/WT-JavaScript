@@ -101,6 +101,8 @@ UNSAFE_componentWillMount()
 >
 >원래는 `componentWillMount()` 가 정상적인 이름이고 React v17에서 다시 이름이 정정된다고한다.
 
+`UNSAFE_componentWillMount()` 에서 하던 처리를 `constructor()` 와 `componentDidMount()` 에서도 충분히 처리하는것이 가능하다.
+
 ### componentDidMount()
 ```javascript
 componentDidMount()
@@ -124,9 +126,14 @@ class Test extends React.Component {
       // 생명주기내에서 한 번만 호출되기 때문에 AJAX 요청과 같은 사이드 이펙트를 적용시키기에 적절하다.
       // e.g. axios request
       axios.get('/test')
-        .then(response => { console.log(response); })
-        .catch(error => { console.log(error); })
-      // setState()는 리렌더링을 발생시키기 때문에 사용하면 안된다.
+        .then(response => { 
+          this.setState({
+            data: response.data
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        })
     }
 
   ∙∙∙
@@ -154,6 +161,14 @@ UNSAFE_componentWillReceiveProps(nextProps)
 shouldComponentUpdate(nextProps, nextState)
 ```
 
+* 호출시점: 리렌더링(re-render)시에 호출된다.
+* 사용용도
+  * 성능 최적화를 위해서 사용된다.
+  * 사용자가 정의한 특정 시점에 `render()` 수행여부를 결정할 수 있다.
+* 메소드내에서 하면 <b>안되는</b> 행위
+  * 깊은 동등비교(deep equality check)
+  * `JSON.stringify()`
+
 ><b>원문 해석</b>
 >
 >`sholudComponentUpdate()` 를 사용하면 컴포넌트의 출력이 현재 state와 props의 변경에 영향을 끼치는지 알 수 있다. 기본동작은 모든 상태변경시에 리렌더링(re-render)시키고, 대다수의 경우 기본동작에 의존해야한다.
@@ -164,7 +179,7 @@ shouldComponentUpdate(nextProps, nextState)
 >
 >만약 특정 컴포넌트가 프로파일링 작업 후에 느려지는 경우 `shouldComponentUpdate()` 를 implement 하여 shallow prop과 상태(state)비교를 하도록 `React.PureComponent` 를 상속받으면 된다. `React.Component` 는 `shouldComponentUpdate()` 를 impletement 할 수 없기 때문이다. 직접 구현하길 원한다면 `this.props`와 `nextProps` 를 비교하고 `this.state`와 `nextState` 를 비교하고 `false` 를 반환함으로서 React에게 업데이트는 스킵되어도된다고 알리면 된다.
 >
->`shouldComponentUpdate()` 내부에서 깊은 동등비교 또는 `JSON.stringify()` 를 사용하는걸 지양한다. 이것은 매우 효율적이지 않고 성능에 해를 끼칠 수 있다.
+>`shouldComponentUpdate()` 내부에서 깊은 동등비교 또는 `JSON.stringify()` 를 사용하는걸 지양한다. 이것은 매우 효율적이지 않고 성능에 해를 끼칠 수 있다. 왜냐하면 이 행위들이 `render()` 여부를 결정하는 시간이 단순히 `render()` 를 수행하는 시간보다 더 오래걸리기 때문이다.
 
 ### UNSAFE_componentWillUpdate()
 ```javascript
@@ -180,9 +195,9 @@ props를 변경하는 응답요청내에서 상태(state)값을 업데이트 해
 ```javascript
 render()
 ```
-`render()` 메소드는 필수이다.
+`render()` 메소드는 호출이 필수적이다.
 
-호출되었을때, `this.props` 와 `this.state`를 검사하고 다음 type들중에 하나를 반환해야만 한다.
+`render()` 가 호출되었을때, `this.props` 와 `this.state` 를 검사하고 다음 type들중에 하나를 반환해야만 한다.
 
 - React elements
 일반적으로 JSX를 통해서 생성된다. 요소는 native DOM으로 표현됐을수도 있고(<div />), 또는 user가 정의한 컴포넌트일수도 있다.
@@ -205,11 +220,12 @@ return test && <Child />
 
 null과 false가 반환됐을때는 `ReactDOM.findDOMNode(this)` 가 null을 반환한다.
 
-`render()` 함수는 순수해야한다. 순수하다는건 컴포넌트의 state를 수정할 수 없고, 호출시에 계속 같은 결과를 반환해야한다는 것이다. 그리고 브라우저와 직접적으로 상호작용해서는 안된다. 브라우저와 상호작용이 필요하다면 `componentDidMount()` 나 다른 생명주기 메소드내에서 수행해야한다. `render()` 를 순수하게 만들어 유지할수록 생각하기 쉬워진다.
+`render()` 함수는 순수해야한다. 순수하다는건 컴포넌트의 state를 수정할 수 없고, 호출시에 계속 같은 결과를 반환해야한다는 것이다. 그리고 브라우저와 직접적으로 상호작용해서는 안된다. 브라우저와 상호작용이 필요하다면 `componentDidMount()` 나 다른 생명주기 메소드내에서 수행해야한다.
 
 `render()` 는 `shouldComponentUpdate()` 가 false를 반환할 경우에는 호출되지 않는다.
 
 <b>Fragments</b>
+
 `render()` 내에서 여러 아이템들을 반환할땐 배열을 사용한다. Fragment를 사용할땐 key 속성에 값을 넣어서 key warning을 피하도록 한다.
 ```javascript
 render() {
