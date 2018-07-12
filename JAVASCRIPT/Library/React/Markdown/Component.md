@@ -2,6 +2,8 @@ React Compoenent
 ===
 어쩌면 컴포넌트가 React에서 가장 중요한 핵심 개념이지 않을까 생각한다. React는 컴포넌트 단위로 리렌더링 되고, 컴포넌트 단위로 페이지를 구성하기 때문이다. 우선 이 컴포넌트라는 것은 말그대로 페이지의 한 부분, 요소들을 의미한다. 우리가 퍼즐을 맞출때 몇천조각으로 분리된 그림을 합쳐서 완성하듯이 웹을 컴포넌트라는 단위로 나누어서 구성하는 것이다. 여기서 React의 가장 큰 장점이었던 Virtual DOM의 능력이 극대화된다. 상태가 변경된 컴포넌트만 리렌더링 해주는 것이기 때문이다. 따라서 React를 잘 사용한다고 하면 우선은 Component를 잘나누고 구성하는 것이 가장 핵심일 것 같다. 이 문서에서는 컴포넌트는 무엇이며 어떻게 나누는지에 대한 내용을 다룬다.
 
+Perhaps the component is the most important key concept in React. Because React is rerendered on the component basis, and the page is organized on the component basis. First of all, the component literally means a part of the page, elements. Just like when we put the thousand of pieces together and complete the puzzle, web is organized by dividing on the component basis. This is where the capability of virtual DOM, the biggest strength of React, is maximized. Because only the component whose state has changed are rerendered. Therefore, dividing and organizing components well is the key point of using React well. This document covers what is a component and how to divide it.
+
 # 컴포넌트의 분리
 
 Component는 크게 2가지로 나뉜다. Dumb Component(멍청한 컴포넌트), Smart Component(똑독한 컴포넌트). 먼저 Smart Component는 state값을 관리하며 컴포넌트내의 행동(method)들을 정의하고 있는 컴포넌트다. 쉽게 말해서 최상위 부모 컴포넌트라고 할 수 있다. 반면에 Dumb Component는 독자적인 state값도 없고 method또한 없다. 쉽게 말해서 자식 컴포넌트이다. 이 둘을 분리하는 이유는 무엇이며 왜 중요한가.
