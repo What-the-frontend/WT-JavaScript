@@ -24,21 +24,21 @@ Redux의 작동을 돕는 함수 혹은 객체에는 크게 `Action`, `Reducer`,
 
 1. `View` 에서 이벤트가 발생하면 그에 맞는 `Action` 이 생성자에 의해서 생성되고, 이를 `Store` 에 전달(dispatch)한다.
 
-`Action` 은 스토어의 상태가 '어떻게' 변경될것인지에 대한 명세서라고 생각하면된다. 순수 JavaScript 객체로 이루어져있으며, 고유한 `type` 값을 통해서 다른 `Action` 들과 구분된다.
+    `Action` 은 스토어의 상태가 '어떻게' 변경될것인지에 대한 명세서라고 생각하면된다. 순수 JavaScript 객체로 이루어져있으며, 고유한 `type` 값을 통해서 다른 `Action` 들과 구분된다.
 
-이 `Action` 객체는 `Action Creator` 라는 함수를 통해서 반환되는 형태로 실제로 사용된다.(직접 `Action` 객체를 가져와서 사용하지 않는다.)
+    이 `Action` 객체는 `Action Creator` 라는 함수를 통해서 반환되는 형태로 실제로 사용된다.(직접 `Action` 객체를 가져와서 사용하지 않는다.)
 
-간단히 설명하면 `Store` 는 상태를 트리구조로 저장하는 컨테이너를 의미한다.
+    간단히 설명하면 `Store` 는 상태를 트리구조로 저장하는 컨테이너를 의미한다.
 
 2. `Store` 가 현재 상태트리와 전달받은 `Action` 을 `Root Reducer` 에 전달한다.
 
-`Reducer` 는 위에서도 간략하게 소개했지만, `Action` 에 명세된대로 실제로 변경을 발생시키는 함수이다. 이 `Reducer` 들은 하나의 `Reducer` 로 합쳐져서 관리되며, 그 최상단에 있는것이 `Root Reducer` 이다.
+    `Reducer` 는 위에서도 간략하게 소개했지만, `Action` 에 명세된대로 실제로 변경을 발생시키는 함수이다. 이 `Reducer` 들은 하나의 `Reducer` 로 합쳐져서 관리되며, 그 최상단에 있는것이 `Root Reducer` 이다.
 
 3. `Root Reducer` 가 전달받은 상태트리를 분할한뒤, `Action` 에 맞는 `Sub Reducer` 로 전달한다.
 
 4. `Sub Reducer` 가 `Action` 대로 상태트리를 변경한뒤에, `Root Reducer` 로 전달한다.
 
-이때, `Reducer` 는 상태를 복사한 후에, 그 복사된 내용을 수정해서 다시 반환하는 순수함수(pure-function)로 작성된다.
+    이때, `Reducer` 는 상태를 복사한 후에, 그 복사된 내용을 수정해서 다시 반환하는 순수함수(pure-function)로 작성된다.
 
 5. 모든 `Sub Reducer` 가 상태변경을 완료하면, `Root Reducer` 는 이를 다시 상태트리로 만들어 `Store` 에 전달한다.
 
@@ -46,8 +46,8 @@ Redux의 작동을 돕는 함수 혹은 객체에는 크게 `Action`, `Reducer`,
 
 7. `Store` 가 `view-layer-binding` 을 통해서 상태트리가 변경됐음을 구독된 `View` 에 알려준다.
 
-`view-layer-binding` 은 `Store` 와 `View` 가 서로 쉽게 상호작용할 수 있도록 돕는 중간 매개체 역할을 해준다.
+    `view-layer-binding` 은 `Store` 와 `View` 가 서로 쉽게 상호작용할 수 있도록 돕는 중간 매개체 역할을 해준다.
 
 8. `view-layer-binding` 이 새로운 상태트리를 `Store` 로부터 전달받고, `View` 가 이를 적용한다.
 
-엄청나게 복잡하다고 생각할 수 있지만, 사실 단순한 패턴을 갖고있는것이 Redux이다.
+    엄청나게 복잡하다고 생각할 수 있지만, 사실 단순한 패턴을 갖고있는것이 Redux이다.
